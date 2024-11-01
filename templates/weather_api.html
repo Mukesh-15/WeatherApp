@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/weather_api.css' %}">
+</head>
+<body style="background-image: linear-gradient(180deg,rgba(0, 0, 0, 0.0),rgba(0, 0, 0,0.9)),url('{{image_url}}');background-attachment: fixed;background-size: cover;">
+    <div class="back" >
+        <div class="left" >
+            <div class="details">
+                <div class="deg">
+                    <p>{{temp}}</p>
+                </div>
+                <div class="city">
+                    <div>
+                        <p>{{city}}</p>
+                    </div>
+                    <div>
+                        <p>06:09⋅Monday,05 Sep'24</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <p><img src="http://openweathermap.org/img/w/{{icon}}.png" width="50px" alt=""></p>
+                    <p>{{description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="search_box">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div>
+                        <input type="text" placeholder="Enter city name..." name="city">
+                        <button><ion-icon name="search-outline"></ion-icon></button>
+                    </div>
+                </form>
+            </div>
+            <div class="info">
+                <div class="box">
+                    <div class="top_left">
+                        <p>Pressure</p>
+                        <p><img height="30px" width="30px" src="https://cdn0.iconfinder.com/data/icons/weather-line-19/32/Windy-512.png"></p>
+                    </div>
+                    <div class="bottom_right">
+                        <p class="val">{{pressure}}</p>
+                        <p>Ph</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="top_left">
+                        <p>Humidity</p>
+                        <p><img height="30px" width="30px" src="https://cdn0.iconfinder.com/data/icons/weather-line-19/32/Thermometer_Hot-256.png"></p>
+                    </div>
+                    <div class="bottom_right">
+                        <p class="val">{{humidity}}</p>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="top_left">
+                        <p>AQI</p>
+                        <p><img height="40px" width="40px" src="https://cdn4.iconfinder.com/data/icons/the-weather-is-nice-today/64/weather_46-256.png"></p>
+                    </div>
+                    <div class="bottom_right">
+                        <p class="val">69</p>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="top_left">
+                        <p>Wind</p>
+                        <p><img height="30px" width="30px" src="https://cdn0.iconfinder.com/data/icons/weather-line-19/32/Windy-512.png"></p>
+                    </div>
+                    <div class="bottom_right">
+                        <p class="val">{{wind_speed}}</p>
+                        <p>km/h</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
